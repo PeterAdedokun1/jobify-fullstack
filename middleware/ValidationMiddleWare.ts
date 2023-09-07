@@ -58,8 +58,8 @@ export const validateRegisterInput = withValidateErrors([
     body("password").notEmpty().withMessage("password is required").isLength({ min: 6 }).withMessage("password must be at least 6 characters long"),
     body("location").notEmpty().withMessage("location is required"),
     body("lastName").notEmpty().withMessage("last name is required")
-
 ])
+
 export const validateLoginInput = withValidateErrors([
     body('email')
         .notEmpty()
