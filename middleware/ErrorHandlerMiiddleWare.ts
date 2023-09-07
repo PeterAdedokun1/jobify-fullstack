@@ -8,4 +8,5 @@ const errorHandlerMiddleWare = (err: Error, req: Request, res: Response, next: N
     res.status(statusCode).json({ msg})
 }
 
+
 export default errorHandlerMiddleWare
