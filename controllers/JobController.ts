@@ -17,7 +17,7 @@ export const getJob = async (req: Request, res: Response) => {
     if (!job) {
         throw new NotFoundError(`no job with id ${id}`)
     }
-     res.status(StatusCodes.OK).json({ job })
+    res.status(StatusCodes.OK).json({ job })
 }
 export const deleteJob = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -35,5 +35,5 @@ export const UpdateJob = async (req: Request, res: Response) => {
     if (!updatedJob) {
         throw new NotFoundError(`no job with id ${id}`)
     }
-    return res.status(StatusCodes.OK).json({job: updatedJob})
+    return res.status(StatusCodes.OK).json({ job: updatedJob })
 }

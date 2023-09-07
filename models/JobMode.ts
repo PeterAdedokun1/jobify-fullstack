@@ -2,6 +2,7 @@ import mongoose,{Document,Model} from "mongoose";
 
 interface IJobs extends Document   {
     company: string;
+    position: string;
     jobStatus: "interview" | "declined" | "pending";
     jobType: "full-time" | "part-time" | "internship";
     jobLocation: string;
@@ -9,6 +10,10 @@ interface IJobs extends Document   {
 
 const jobSchema = new mongoose.Schema<IJobs>({
     company: {
+        type: String,
+        required: true,
+    },
+    position: {
         type: String,
         required: true,
     },
