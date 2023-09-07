@@ -1,12 +1,13 @@
 import "express-async-errors"
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Application, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 const app: Application = express();
 import morgan from "morgan";
 import { nanoid } from "nanoid"
 import router from "./routes/JobRouter";
 import mongoose from "mongoose"
+import errorHandlerMiddleWare from "./middleware/ErrorHandlerMiiddleWare";
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -14,6 +15,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 app.use("/api/v1/jobs", router)
+app.use(errorHandlerMiddleWare)
 
 const port = process.env.PORT || 3000;
 

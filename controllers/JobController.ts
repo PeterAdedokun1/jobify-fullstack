@@ -1,6 +1,7 @@
 import Job from "../models/JobMode"
 import { Request, Response } from "express"
-import {StatusCodes} from "http-status-codes"
+import { StatusCodes } from "http-status-codes"
+import { NotFoundError } from "../errors/CustomError"
 export const createJob = async (req: Request, res: Response) => {
     const { company, position } = req.body
     const jobs = await Job.create({ company, position })
@@ -14,9 +15,9 @@ export const getJob = async (req: Request, res: Response) => {
     const { id } = req.params;
     const job = await Job.findById(id);
     if (!job) {
-        return res.status(404).json({ msg: `no job with id ${id}` })
+        throw new NotFoundError(`no job with id ${id}`)
     }
-    return res.status(StatusCodes.OK).json({ job })
+     res.status(StatusCodes.OK).json({ job })
 }
 export const deleteJob = async (req: Request, res: Response) => {
     const { id } = req.params;
