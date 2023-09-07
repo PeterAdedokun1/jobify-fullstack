@@ -4,18 +4,24 @@ dotenv.config();
 import express, { Application, NextFunction, Request, Response } from "express";
 const app: Application = express();
 import morgan from "morgan";
-import router from "./routes/JobRouter";
+import JobRouter from "./routes/JobRouter";
 import mongoose from "mongoose"
 import errorHandlerMiddleWare from "./middleware/ErrorHandlerMiddleWare";
 import { body, validationResult } from "express-validator"
 import authRouter from "./routes/AuthRouter";
+import { authenticateUser } from "./middleware/AuthMiddleWare";
+import cookieParser from "cookie-parser"
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
 app.use(express.json());
 
-app.use("/api/v1/jobs", router)
+//for accessing the cookie
+app.use(cookieParser())
+
+//routers
+app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/auth", authRouter)
 app.use(errorHandlerMiddleWare)
 

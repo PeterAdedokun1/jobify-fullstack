@@ -6,6 +6,7 @@ interface IJobs extends Document   {
     jobStatus: "interview" | "declined" | "pending";
     jobType: "full-time" | "part-time" | "internship";
     jobLocation: string;
+    createdBy: any;
 }
 
 const jobSchema = new mongoose.Schema<IJobs>({
@@ -31,6 +32,10 @@ const jobSchema = new mongoose.Schema<IJobs>({
         type: String,
         default: 'my city',
     },
+    createdBy: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
+    }
 }, {
     timestamps: true
 }
