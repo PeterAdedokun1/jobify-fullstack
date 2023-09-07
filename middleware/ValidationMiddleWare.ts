@@ -3,7 +3,8 @@ import { body, validationResult, param } from "express-validator"
 import { BadRequestError, NotFoundError } from "../errors/CustomError";
 import { JOB_STATUS, JOB_TYPE } from "../utils/constants";
 import mongoose from "mongoose";
-import Job from "../models/JobMode";
+import Job from "../models/JobModel";
+import User from "../models/UserModel";
 type ValidationMiddleware = (req: Request, res: Response, next: NextFunction) => void;
 
 
@@ -21,13 +22,7 @@ const withValidateErrors = (validateValues: any): [ValidationMiddleware, Validat
 
     return [validateValues, validationMiddleware];
 };
-export const validateTest = withValidateErrors(
-    [body("name")
-        .notEmpty()
-        .withMessage("name is required")
-        .isLength({ min: 3, max: 50 })
-        .withMessage("name must be between 3 and 50 characters long").trim()
-    ])
+
 
 export const validateJobInput = withValidateErrors(
     [
@@ -45,4 +40,18 @@ export const validateIdParams = withValidateErrors([
         const job = await Job.findById(value);
         if (!job) throw new NotFoundError(`no job with id : ${value}`);
     })
+])
+
+export const validateRegisterInput = withValidateErrors([
+    body("name").notEmpty().withMessage("name is required"),
+    body("email").notEmpty().withMessage("invalid email format").custom(async (email) => {
+        const user = await User.findOne({ email });
+        if (user) {
+            throw new BadRequestError("email already exists");
+        }
+    }),
+    body("password").notEmpty().withMessage("password is required").isLength({ min: 8 }).withMessage("password must be at least 6 characters long"),
+    body("location").notEmpty().withMessage("location is required"),
+    body("lastName").notEmpty().withMessage("lsat name is required")
+    
 ])

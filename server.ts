@@ -8,6 +8,7 @@ import router from "./routes/JobRouter";
 import mongoose from "mongoose"
 import errorHandlerMiddleWare from "./middleware/ErrorHandlerMiddleWare";
 import { body, validationResult } from "express-validator"
+import authRouter from "./routes/AuthRouter";
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 app.use("/api/v1/jobs", router)
+app.use("/api/v1/auth", authRouter)
 app.use(errorHandlerMiddleWare)
 
 
