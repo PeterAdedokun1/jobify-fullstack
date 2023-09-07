@@ -1,5 +1,5 @@
 import mongoose,{Document,Model} from "mongoose";
-
+import { JOB_STATUS, JOB_TYPE } from "../utils/constants";
 interface IJobs extends Document   {
     company: string;
     position: string;
@@ -19,12 +19,12 @@ const jobSchema = new mongoose.Schema<IJobs>({
     },
     jobStatus: {
         type: String,
-        enum: ["interview", "declined", "pending"],
+        enum: Object.values(JOB_STATUS),
         default: "pending"
     },
     jobType: {
         type: String,
-        enum: ['full-time', 'part-time', 'internship'],
+        enum: Object.values(JOB_TYPE),
         default: 'full-time',
     },
     jobLocation: {
