@@ -8,6 +8,7 @@ export const createJob = async (req: Request, res: Response) => {
     res.status(StatusCodes.CREATED).json({ jobs })
 }
 export const getAllJobs = async (req: Request, res: Response) => {
+    console.log(req)
     const jobs = await Job.find({});
     res.status(StatusCodes.OK).json({ jobs })
 }
