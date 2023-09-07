@@ -1,14 +1,14 @@
 import Job from "../models/JobMode"
 import { Request, Response } from "express"
-
+import {StatusCodes} from "http-status-codes"
 export const createJob = async (req: Request, res: Response) => {
     const { company, position } = req.body
     const jobs = await Job.create({ company, position })
-    res.status(201).json({ jobs })
+    res.status(StatusCodes.CREATED).json({ jobs })
 }
 export const getAllJobs = async (req: Request, res: Response) => {
     const jobs = await Job.find({});
-    res.status(200).json({ jobs })
+    res.status(StatusCodes.OK).json({ jobs })
 }
 export const getJob = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -16,7 +16,7 @@ export const getJob = async (req: Request, res: Response) => {
     if (!job) {
         return res.status(404).json({ msg: `no job with id ${id}` })
     }
-    return res.status(200).json({ job })
+    return res.status(StatusCodes.OK).json({ job })
 }
 export const deleteJob = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -24,7 +24,7 @@ export const deleteJob = async (req: Request, res: Response) => {
     if (!removeJob) {
         return res.status(404).json({ msg: `no job with id ${id}` })
     }
-    res.status(200).json({ msg: "job deleted", removeJob })
+    res.status(StatusCodes.OK).json({ msg: "job deleted", removeJob })
 }
 export const UpdateJob = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -34,5 +34,5 @@ export const UpdateJob = async (req: Request, res: Response) => {
     if (!updatedJob) {
         return res.status(404).json({ msg: `no job with id ${id}` })
     }
-    return res.status(200).json({job: updatedJob})
+    return res.status(StatusCodes.OK).json({job: updatedJob})
 }
