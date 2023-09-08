@@ -23,7 +23,7 @@ app.use(cookieParser())
 
 //routers
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
-app.use("/api/v1/users",  UserRouter)
+app.use("/api/v1/users", authenticateUser,  UserRouter)
 app.use("/api/v1/auth", authRouter)
 app.use(errorHandlerMiddleWare)
 
