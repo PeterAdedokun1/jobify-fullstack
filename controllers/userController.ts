@@ -10,9 +10,15 @@ export const getCurrentUser = async (req: Request, res: Response) => {
 }
 
 export const getApplicationStats = async (req: Request, res: Response) => {
-    res.status(StatusCodes.OK).json({ msg: 'application stats' });
+    const user = await User.countDocuments();
+    const jobs = await Job.countDocuments();
+
+    res.status(StatusCodes.OK).json({ user, jobs});
 };
 export const updateUser = async (req: Request, res: Response) => {
-    const updatedUser = await User.findByIdAndUpdate(req.user?.userId, req.body);
+    const obj = { ...req.body };
+    delete obj.password
+    const updatedUser = await User.findByIdAndUpdate(req.user?.userId, obj);
+
     res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
