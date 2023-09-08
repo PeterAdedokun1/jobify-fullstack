@@ -9,6 +9,7 @@ import mongoose from "mongoose"
 import errorHandlerMiddleWare from "./middleware/ErrorHandlerMiddleWare";
 import { body, validationResult } from "express-validator"
 import authRouter from "./routes/AuthRouter";
+import UserRouter from "./routes/userRoute"
 import { authenticateUser } from "./middleware/AuthMiddleWare";
 import cookieParser from "cookie-parser"
 if (process.env.NODE_ENV === "development") {
@@ -22,6 +23,7 @@ app.use(cookieParser())
 
 //routers
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
+app.use("/api/v1/users",  UserRouter)
 app.use("/api/v1/auth", authRouter)
 app.use(errorHandlerMiddleWare)
 
