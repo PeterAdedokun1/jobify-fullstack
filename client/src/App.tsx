@@ -20,6 +20,7 @@ export const checkDefaultTheme = () => {
 
 checkDefaultTheme();
 import { action as registerAction } from "./pages/Register";
+import { action as LoginAction } from "./pages/Login";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+        action: LoginAction
       },
       {
         path: "dashboard",
