@@ -1,13 +1,12 @@
 import "express-async-errors"
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application } from "express";
 const app: Application = express();
 import morgan from "morgan";
 import JobRouter from "./routes/JobRouter";
 import mongoose from "mongoose"
 import errorHandlerMiddleWare from "./middleware/ErrorHandlerMiddleWare";
-import { body, validationResult } from "express-validator"
 import authRouter from "./routes/AuthRouter";
 import UserRouter from "./routes/userRoute"
 import { authenticateUser } from "./middleware/AuthMiddleWare";
@@ -21,6 +20,9 @@ app.use(express.json());
 //for accessing the cookie
 app.use(cookieParser())
 
+app.get('/api/v1/test', (req, res) => {
+  res.json({ msg: 'test route' });
+});
 
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/users", authenticateUser,  UserRouter)
