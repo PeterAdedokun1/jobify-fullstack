@@ -20,9 +20,9 @@ app.use(express.json());
 //for accessing the cookie
 app.use(cookieParser())
 
-app.get('/api/v1/test', (req, res) => {
-  res.json({ msg: 'test route' });
-});
+// app.get('/api/v1/test', (req, res) => {
+//   res.json({ msg: 'test route' });
+// });
 
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/users", authenticateUser,  UserRouter)
