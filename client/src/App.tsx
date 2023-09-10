@@ -21,6 +21,7 @@ export const checkDefaultTheme = () => {
 checkDefaultTheme();
 import { action as registerAction } from "./pages/Register";
 import { action as LoginAction } from "./pages/Login";
+import { loader as dashboardLoader } from "./pages/DashboardLayout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,11 +41,12 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-        action: LoginAction
+        action: LoginAction,
       },
       {
         path: "dashboard",
         element: <DashboardLayout />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,

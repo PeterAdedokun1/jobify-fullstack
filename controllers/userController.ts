@@ -4,9 +4,9 @@ import Job from "../models/JobModel"
 import { Request, Response } from "express"
 
 export const getCurrentUser = async (req: Request, res: Response) => {
-    const user = await User.findOne({ _id: req.user?.userId });
-    const userWithoutPassword = user?.toJSON()
-    res.status(StatusCodes.OK).json({ userWithoutPassword});
+    const findUser = await User.findOne({ _id: req.user?.userId });
+    const user = findUser?.toJSON()
+    res.status(StatusCodes.OK).json({ user});
 }
 
 export const getApplicationStats = async (req: Request, res: Response) => {

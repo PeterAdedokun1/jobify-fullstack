@@ -4,7 +4,7 @@ export interface User {
   name: string;
 }
 interface DashBoardContextProps {
-  user: User;
+  user?: User;
   showSidebar: boolean;
   isDarkTheme: boolean;
   toggleDarkTheme: () => void;
