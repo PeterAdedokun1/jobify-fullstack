@@ -2,7 +2,7 @@ import  {useContext} from 'react'
 import Wrapper from "../assets/wrappers/BigSidebar"
 import { Logo } from '../components';
 import NavLinks from './NavLinks';
-import DashboardContext from './DashboardContext';
+import{ DashboardContext }from './DashboardContext';
 
 
 const BigSideBar = () => {

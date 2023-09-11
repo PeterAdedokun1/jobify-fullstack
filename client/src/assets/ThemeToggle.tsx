@@ -1,6 +1,6 @@
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import Wrapper from "../assets/wrappers/ThemeToggle";
-import DashboardContext from "../components/DashboardContext";
+import {DashboardContext} from "../components/DashboardContext";
 import { useContext } from "react";
 const ThemeToggle = () => {
   const contextValue = useContext(DashboardContext);

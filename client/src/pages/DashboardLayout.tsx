@@ -2,7 +2,7 @@ import { Navbar, SmallSideBar } from "../components";
 import { BigSideBar } from "../components";
 import Wrapper from "../assets/wrappers/Dashboard";
 import { useState } from "react";
-import DashboardContext from "../components/DashboardContext";
+import {DashboardContext }from "../components/DashboardContext";
 import { User } from "../components/DashboardContext";
 import { checkDefaultTheme } from "../App";
 import { Outlet, redirect, useLoaderData ,useNavigate} from "react-router-dom";

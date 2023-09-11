@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import DashboardContext from "./DashboardContext";
+import{ DashboardContext} from "./DashboardContext";
 import Wrapper from "../assets/wrappers/SmallSidebar";
 import { FaTimes } from "react-icons/fa";
 import { Logo } from ".";
