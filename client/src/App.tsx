@@ -21,7 +21,9 @@ export const checkDefaultTheme = () => {
 checkDefaultTheme();
 import { action as registerAction } from "./pages/Register";
 import { action as LoginAction } from "./pages/Login";
+import { action as addJobAction } from "./pages/AddJob";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +53,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AddJob />,
+            action: addJobAction,
           },
           {
             path: "stats",
