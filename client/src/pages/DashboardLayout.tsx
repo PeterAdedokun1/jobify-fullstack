@@ -34,7 +34,7 @@ const DashboardLayout = ({ isDarkThemeEnabled }: any) => {
     navigate("/");
 
     await customFetch.get("/auth/logout");
-    toast.success("Logging out")
+    toast.success("Logging out..")
   };
 
   const { user } = useLoaderData() as any;

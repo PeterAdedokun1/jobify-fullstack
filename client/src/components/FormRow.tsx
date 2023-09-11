@@ -3,7 +3,7 @@ interface Input  {
     type: string;
     name: string,
     labelText?: string;
-    defaultValue: string
+    defaultValue?: string
 }
 
 
