@@ -12,12 +12,15 @@ const NavLinks = ({ isBigSidebar, onClick }: BigSidebar) => {
     <div className="nav-links">
       {links.map((link) => {
         const { icon, path, text } = link;
+        const { role } = contextValue?.user as any
+        console.log(role)
+        if (path === "admin" && role !== "admin") return;
         return (
           <NavLink
             to={path}
             key={text}
             className="nav-link"
-            onClick={isBigSidebar ? null : contextValue?.toggleSideBar}
+            onClick={isBigSidebar ? undefined : contextValue?.toggleSideBar}
             end
           >
             <span className="icon">{icon}</span>
