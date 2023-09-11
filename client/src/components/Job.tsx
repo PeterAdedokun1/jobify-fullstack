@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Job";
@@ -26,7 +25,6 @@ const Job = ({
   createdAt,
   jobStatus,
 }: Job) => {
-  console.log(position)
     const date = day(createdAt).format("MMM Do, YYYY");
   return (
     <Wrapper>
@@ -46,7 +44,7 @@ const Job = ({
         </div>
 
         <footer className="actions">
-          <button className="btn edit-btn">Edit</button>
+          <Link to={ `../edit-job/${_id}`} className="btn edit-btn">Edit</Link>
           <Form>
             <button type="submit" className="btn delete-btn">
               Delete

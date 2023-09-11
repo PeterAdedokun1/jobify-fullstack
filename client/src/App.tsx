@@ -11,6 +11,7 @@ import {
   AllJobs,
   Profile,
   Admin,
+  EditJob
 } from "./pages";
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+          },
+          {
+            path: "edit-job/:id",
+            element: <EditJob />,
           },
         ],
       },
