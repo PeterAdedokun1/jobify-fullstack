@@ -1,4 +1,3 @@
-import React from 'react'
 import Wrapper from "../assets/wrappers/JobInfo";
 interface JobInfo{
     icon: any;

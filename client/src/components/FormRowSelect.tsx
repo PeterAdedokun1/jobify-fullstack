@@ -1,12 +1,15 @@
-import React from 'react'
-import { JOB_STATUS } from '../../../utils/constants';
-interface Select{
+interface Select {
   name: string;
   labelText: string;
   list: string[];
   defaultValue: string;
 }
-const FormRowSelect = ({ name, labelText, list, defaultValue = "" }: Select) => {
+const FormRowSelect = ({
+  name,
+  labelText,
+  list,
+  defaultValue = "",
+}: Select) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -28,5 +31,5 @@ const FormRowSelect = ({ name, labelText, list, defaultValue = "" }: Select) => 
       </select>
     </div>
   );
-}
-export default FormRowSelect
+};
+export default FormRowSelect;

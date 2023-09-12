@@ -1,17 +1,15 @@
-
-interface Input  {
-    type: string;
-    name: string,
-    labelText?: string;
-    defaultValue?: string
+interface Input {
+  type: string;
+  name: string;
+  labelText?: string;
+  defaultValue?: string;
 }
 
-
-const FormRow = ({type, name, labelText,defaultValue}: Input) => {
+const FormRow = ({ type, name, labelText, defaultValue }: Input) => {
   return (
     <div className="form-row">
       <label htmlFor="name" className="form-label">
-      {labelText || name}
+        {labelText || name}
       </label>
       <input
         type={type}
@@ -23,6 +21,6 @@ const FormRow = ({type, name, labelText,defaultValue}: Input) => {
       />
     </div>
   );
-}
+};
 
-export default FormRow
+export default FormRow;

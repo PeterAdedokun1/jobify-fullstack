@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { DashboardContext } from "./DashboardContext";
 import links from "../utils/links";
 import { NavLink } from "react-router-dom";
 type BigSidebar = {
   isBigSidebar?: boolean;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 };
-const NavLinks = ({ isBigSidebar, onClick }: BigSidebar) => {
+const NavLinks = ({ isBigSidebar}: BigSidebar) => {
   const contextValue = useContext(DashboardContext);
   return (
     <div className="nav-links">

@@ -7,13 +7,13 @@ import day from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 day.extend(advancedFormat);
 interface Job {
-  _id: string
-  position: string
-  company: string
-  jobLocation: string
-  jobType: string
-  createdAt: string
-  jobStatus: string
+  _id: string;
+  position: string;
+  company: string;
+  jobLocation: string;
+  jobType: string;
+  createdAt: string;
+  jobStatus: string;
 }
 
 const Job = ({
@@ -25,7 +25,7 @@ const Job = ({
   createdAt,
   jobStatus,
 }: Job) => {
-    const date = day(createdAt).format("MMM Do, YYYY");
+  const date = day(createdAt).format("MMM Do, YYYY");
   return (
     <Wrapper>
       <header>
@@ -58,4 +58,4 @@ const Job = ({
   );
 };
 
-export default Job
+export default Job;
