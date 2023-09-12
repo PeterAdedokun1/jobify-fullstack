@@ -17,19 +17,19 @@ export const loader = async () => {
 };
 
 const Admin = () => {
-  // const { users, jobs } = useLoaderData() as any
+  const { user, jobs } = useLoaderData() as any
  return (
    <Wrapper>
      <StatItem
        title="current users"
-      //  count={users}
+       count={user}
        color="#e9b949"
-      //  bcg="#fcefc7"
+      //  bcg="#565656"
        icon={<FaSuitcaseRolling />}
      />
      <StatItem
        title="total jobs"
-      //  count={jobs}
+       count={jobs}
        color="#647acb"
       //  bcg="#e0e8f9"
        icon={<FaCalendarCheck />}

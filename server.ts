@@ -11,6 +11,19 @@ import authRouter from "./routes/AuthRouter";
 import UserRouter from "./routes/userRoute"
 import { authenticateUser } from "./middleware/AuthMiddleWare";
 import cookieParser from "cookie-parser"
+import cloudinary from 'cloudinary';
+
+//images
+import path from 'path';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
+app.use(express.static(path.resolve(__dirname, './public')));
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -20,9 +33,6 @@ app.use(express.json());
 //for accessing the cookie
 app.use(cookieParser())
 
-// app.get('/api/v1/test', (req, res) => {
-//   res.json({ msg: 'test route' });
-// });
 
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/users", authenticateUser,  UserRouter)

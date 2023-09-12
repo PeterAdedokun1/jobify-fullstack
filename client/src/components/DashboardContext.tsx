@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 export interface User {
   name: string;
+  avatar: string
 }
 interface DashBoardContextProps {
   user?: User;

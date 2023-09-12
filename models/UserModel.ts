@@ -1,12 +1,14 @@
-import mongoose,{Document, Model} from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 
-interface User extends Document{
+interface User extends Document {
     name: string;
     email: string;
     password: string;
     lastName: string;
     location: string;
-    role: "user" | "admin"
+    role: "user" | "admin";
+    avatar: string;
+    avatarPublicId: string;
 }
 
 const userSchema = new mongoose.Schema<User>({
@@ -26,6 +28,9 @@ const userSchema = new mongoose.Schema<User>({
         enum: ['user', 'admin'],
         default: 'user',
     },
+    avatar: String,
+   avatarPublicId: String,
+
 })
 
 userSchema.methods.toJSON = function () {
