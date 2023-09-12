@@ -12,7 +12,6 @@ const NavLinks = ({ isBigSidebar}: BigSidebar) => {
       {links.map((link) => {
         const { icon, path, text } = link;
         const { role } = contextValue?.user as any
-        console.log(role)
         if (path === "admin" && role !== "admin") return;
         return (
           <NavLink

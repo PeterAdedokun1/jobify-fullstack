@@ -11,6 +11,14 @@ import authRouter from "./routes/AuthRouter";
 import UserRouter from "./routes/userRoute"
 import { authenticateUser } from "./middleware/AuthMiddleWare";
 import cookieParser from "cookie-parser"
+//images
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+
+app.use(express.static(path.resolve(__dirname, './public')));
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -20,9 +28,6 @@ app.use(express.json());
 //for accessing the cookie
 app.use(cookieParser())
 
-// app.get('/api/v1/test', (req, res) => {
-//   res.json({ msg: 'test route' });
-// });
 
 app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/users", authenticateUser,  UserRouter)
