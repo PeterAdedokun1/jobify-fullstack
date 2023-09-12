@@ -1,18 +1,15 @@
-import { Request } from 'express';
-import multer, { DiskStorage } from 'multer';
-
-// Create a storage engine for multer
-const storage: DiskStorage = multer.diskStorage({
-    destination: (req: Request, file: Express.Multer.File, cb) => {
-        cb(null, "public/uploads");
+import multer from 'multer';
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        // set the directory where uploaded files will be stored
+        cb(null, 'public/upload');
     },
-    filename: (req: Request, file: Express.Multer.File, cb) => {
+    filename: (req, file, cb) => {
         const fileName = file.originalname;
+        // set the name of the uploaded file
         cb(null, fileName);
     },
 });
-
-// Create a multer instance with the specified storage engine
 const upload = multer({ storage });
 
 export default upload;

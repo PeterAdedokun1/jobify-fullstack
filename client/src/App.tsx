@@ -78,10 +78,6 @@ const router = createBrowserRouter([
             action: profileLoader,
           },
           {
-            path: "admin",
-            element: <Admin />,
-          },
-          {
             path: "edit-job/:id",
             element: <EditJob />,
             loader: editJobLoader,

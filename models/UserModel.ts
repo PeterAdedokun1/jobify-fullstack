@@ -8,7 +8,7 @@ interface User extends Document {
     location: string;
     role: "user" | "admin";
     avatar: string;
-    avatarPublicString: string;
+    avatarPublicId: string;
 }
 
 const userSchema = new mongoose.Schema<User>({
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema<User>({
         default: 'user',
     },
     avatar: String,
-    avatarPublicString: String,
+   avatarPublicId: String,
 
 })
 

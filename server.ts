@@ -11,11 +11,16 @@ import authRouter from "./routes/AuthRouter";
 import UserRouter from "./routes/userRoute"
 import { authenticateUser } from "./middleware/AuthMiddleWare";
 import cookieParser from "cookie-parser"
+import cloudinary from 'cloudinary';
+
 //images
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import path from 'path';
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 app.use(express.static(path.resolve(__dirname, './public')));
 
