@@ -15,7 +15,8 @@ interface DashBoardContextProps {
 }
 
 interface AllJobsContextProps{
-  data:any
+  data: any
+  searchValues: any
 }
 
 export const DashboardContext = createContext<DashBoardContextProps | undefined>(
