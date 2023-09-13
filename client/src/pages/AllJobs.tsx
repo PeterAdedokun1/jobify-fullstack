@@ -16,6 +16,7 @@ export const loader = async () => {
 
 const AllJobs = () => {
   const { data } = useLoaderData() as any;
+  console.log(data)
   return (
     <AllJobsContext.Provider value={{data}}>
       <SearchContainer />

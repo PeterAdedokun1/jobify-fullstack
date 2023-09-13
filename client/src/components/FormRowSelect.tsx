@@ -1,6 +1,6 @@
 interface Select {
   name: string;
-  labelText: string;
+  labelText?: string;
   list: string[];
   defaultValue: string;
 }
