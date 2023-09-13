@@ -10,6 +10,17 @@ const SearchContainer = () => {
   const contextValue = useContext(AllJobsContext);
   const { search, jobStatus, jobType, sort } = contextValue?.searchValues;
   const submit = useSubmit()
+   const debounce = (onChange: (form: HTMLFormElement) => void) => {
+     let timeout: NodeJS.Timeout | undefined;
+
+     return (e: React.FormEvent<HTMLInputElement>) => {
+       const form = e.currentTarget.form as HTMLFormElement;
+       clearTimeout(timeout as NodeJS.Timeout);
+       timeout = setTimeout(() => {
+         onChange(form);
+       }, 2000);
+     };
+   };
   return (
     <Wrapper>
       <Form className="form">
@@ -21,9 +32,10 @@ const SearchContainer = () => {
             type="search"
             name="search"
             defaultValue={search}
-            onChange={(e: FormEvent<HTMLInputElement>) => {
-              submit(e.currentTarget.form);
-            }}
+          
+            onChange={debounce((form : any) => {
+              submit(form);
+            })}
           />
           <FormRowSelect
             labelText="job status"

@@ -6,7 +6,8 @@ interface Input {
   onChange?: any
 }
 
-const FormRow = ({ type, name, labelText, defaultValue,onChange }: Input) => {
+const FormRow = ({ type, name, labelText, defaultValue, onChange }: Input) => {
+
   return (
     <div className="form-row">
       <label htmlFor="name" className="form-label">
