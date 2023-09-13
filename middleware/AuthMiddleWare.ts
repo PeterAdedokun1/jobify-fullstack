@@ -1,4 +1,3 @@
-import { verify } from 'crypto';
 import { BadRequestError, UnauthenticatedError } from './../errors/CustomError';
 import { NextFunction, Request, Response } from "express"
 import { verifyJWT } from '../utils/tokenUtils';
@@ -19,7 +18,8 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
     try {
         const payload = verifyJWT(token);
         const { userId, role } = payload as JwtPayload;
-        const testUser = userId === 'testUserId';
+        //test user
+        const testUser = userId === '6500a1803ef201cfc8ec2276';
         req.user = { userId, role, testUser };
         next();
     } catch (error) {
@@ -27,7 +27,7 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
     }
 }
 
-export const checkForTestUser = (req:Request, res:Response, next: NextFunction) => {
+export const checkForTestUser = (req: Request, res: Response, next: NextFunction) => {
     if (req?.user?.testUser) {
         throw new BadRequestError('Demo User. Read Only!');
     }
