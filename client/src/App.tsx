@@ -63,7 +63,7 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-        action: LoginAction,
+        action: LoginAction(queryClient),
       },
       {
         path: "dashboard",
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />,
-            action: profileLoader,
+            action: profileLoader(queryClient),
           },
           {
             path: "edit-job/:id",

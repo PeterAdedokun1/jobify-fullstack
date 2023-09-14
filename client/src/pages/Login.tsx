@@ -3,12 +3,14 @@ import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import { FormRow, Logo } from "../components";
 import customFetch from "../utils/CustomFetch";
 import { toast } from "react-toastify";
+import { QueryClient } from "@tanstack/react-query";
 
-export const action = async ({ request }: any) => {
+export const action = (queryClient: QueryClient) => async ({ request }: any) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post("/auth/login", data);
+    queryClient.invalidateQueries()
     toast.success("Login successful");
     return redirect("/dashboard")
   } catch (error: any) {

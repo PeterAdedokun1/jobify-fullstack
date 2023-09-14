@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigation, Form } from "react-router-dom";
 import customFetch from "../utils/CustomFetch";
 import { toast } from "react-toastify";
+import { QueryClient } from "@tanstack/react-query";
 interface UserDetails {
   _id: number;
   name: string;
@@ -17,7 +18,7 @@ interface User {
 }
 
 
-export const action = async ({request}:any) => {
+export const action = (queryClient: QueryClient) => async ({request}:any) => {
   const formData = await request.formData();
   const file = formData.get("avatar");
   if (file && file.size > 500000) {
@@ -26,6 +27,7 @@ export const action = async ({request}:any) => {
   }
   try {
     await customFetch.patch("/users/update-user", formData);
+       queryClient.invalidateQueries(["user"]);
         toast.success("Profile updated successfully");
   } catch (error: any) {
         toast.error(error?.response?.data?.msg);
