@@ -3,12 +3,14 @@ interface Select {
   labelText?: string;
   list: string[];
   defaultValue: string;
+  onChange: any
 }
 const FormRowSelect = ({
   name,
   labelText,
   list,
   defaultValue = "",
+  onChange
 }: Select) => {
   return (
     <div className="form-row">
@@ -20,6 +22,7 @@ const FormRowSelect = ({
         id={name}
         className="form-select"
         defaultValue={defaultValue}
+        onChange={onChange}
       >
         {list.map((itemValue) => {
           return (

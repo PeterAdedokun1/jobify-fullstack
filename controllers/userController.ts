@@ -4,6 +4,7 @@ import Job from "../models/JobModel"
 import { Request, Response } from "express"
 import cloudinary from "cloudinary";
 import { promises as fs } from "fs";
+
 export const getCurrentUser = async (req: Request, res: Response) => {
     const findUser = await User.findOne({ _id: req.user?.userId });
     const user = findUser?.toJSON()

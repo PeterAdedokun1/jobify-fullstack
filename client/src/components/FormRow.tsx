@@ -3,9 +3,11 @@ interface Input {
   name: string;
   labelText?: string;
   defaultValue?: string;
+  onChange?: any
 }
 
-const FormRow = ({ type, name, labelText, defaultValue }: Input) => {
+const FormRow = ({ type, name, labelText, defaultValue, onChange }: Input) => {
+
   return (
     <div className="form-row">
       <label htmlFor="name" className="form-label">
@@ -18,6 +20,7 @@ const FormRow = ({ type, name, labelText, defaultValue }: Input) => {
         className="form-input"
         defaultValue={defaultValue || ""}
         required
+        onChange={onChange}
       />
     </div>
   );
