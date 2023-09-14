@@ -18,7 +18,7 @@ export const loader = async () => {
   }
 };
 
-const DashboardLayout = ({ isDarkThemeEnabled }: any) => {
+const DashboardLayout = () => {
   const [showSidebar, setShowSideBar] = useState<boolean>(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
   const navigate = useNavigate();
