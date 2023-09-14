@@ -1,4 +1,4 @@
-import { Link, Form, redirect, useNavigation, useNavigate } from "react-router-dom";
+import { Link, Form, redirect, useNavigation, useNavigate, } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import { FormRow, Logo } from "../components";
 import customFetch from "../utils/CustomFetch";
@@ -19,6 +19,7 @@ export const action = async ({ request }: any) => {
 
 export const Login = () => {
   const navigation = useNavigation();
+  console.log(navigation.state)
   const isSubmitting = navigation.state === "submitting"
     const navigate = useNavigate();
     const loginDemoUser = async () => {
