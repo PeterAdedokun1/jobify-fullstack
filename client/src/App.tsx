@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ErrorElement from "./components/ErrorElement";
 import {
   HomeLayout,
   Landing,
@@ -30,7 +33,17 @@ import { action as editJobAction } from "./pages/EditJob";
 import { action as deleteJobAction } from "./pages/DeleteJob";
 import { loader as adminLoader } from "./pages/Admin";
 import { action as profileLoader } from "./pages/Profile";
-import {loader as statLoader} from "./pages/Stats"
+import { loader as statLoader } from "./pages/Stats"
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,8 +67,8 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <DashboardLayout />,
-        loader: dashboardLoader,
+        element: <DashboardLayout queryClient={queryClient} />,
+        loader: dashboardLoader(queryClient),
         children: [
           {
             index: true,
@@ -65,7 +78,7 @@ const router = createBrowserRouter([
           {
             path: "stats",
             element: <Stats />,
-            loader: statLoader
+            loader: statLoader,
           },
           {
             path: "all-jobs",
@@ -99,7 +112,12 @@ const router = createBrowserRouter([
   },
 ]);
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

@@ -8,17 +8,27 @@ import { checkDefaultTheme } from "../App";
 import { Outlet, redirect, useLoaderData, useNavigate ,useNavigation} from "react-router-dom";
 import customFetch from "../utils/CustomFetch";
 import { toast } from "react-toastify";
+import { QueryClient, useQuery } from "@tanstack/react-query";
 
-export const loader = async () => {
+const userQuery = {
+  queryKey: ["user"],
+  queryFn:async () => {
+ const { data } = await customFetch("/users/current-user");
+ return data;
+  }
+}
+
+export const loader  = (queryClient: QueryClient)=> async () => {
   try {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
+    return await queryClient.ensureQueryData(userQuery)
   } catch (error) {
     return redirect("/");
   }
 };
-
-const DashboardLayout = () => {
+interface Client {
+  queryClient: QueryClient
+}
+const DashboardLayout = ({ queryClient }: Client) => {
   const [showSidebar, setShowSideBar] = useState<boolean>(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
   const navigate = useNavigate();
@@ -40,7 +50,7 @@ const DashboardLayout = () => {
     toast.success("Logging out..");
   };
 
-  const { user } = useLoaderData() as any;
+  const {user} = useQuery(userQuery).data
   return (
     <DashboardContext.Provider
       value={{
