@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ErrorElement from "./components/ErrorElement";
 import {
   HomeLayout,
   Landing,
@@ -33,8 +32,8 @@ import { action as editJobAction } from "./pages/EditJob";
 import { action as deleteJobAction } from "./pages/DeleteJob";
 import { loader as adminLoader } from "./pages/Admin";
 import { action as profileLoader } from "./pages/Profile";
-import { loader as statLoader } from "./pages/Stats"
-
+import { loader as statLoader } from "./pages/Stats";
+import ErrorElement from "./components/ErrorElement";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,7 +53,6 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
       },
-
       {
         path: "register",
         element: <Register />,
@@ -83,7 +81,8 @@ const router = createBrowserRouter([
           {
             path: "all-jobs",
             element: <AllJobs />,
-            loader: allJobsLoader,
+            loader: allJobsLoader(queryClient),
+            errorElement: <ErrorElement/>
           },
 
           {

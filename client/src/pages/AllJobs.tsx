@@ -3,25 +3,30 @@ import { JobsContainer, SearchContainer } from "../components";
 import customFetch from "../utils/CustomFetch";
 import { useLoaderData } from "react-router-dom";
 import { AllJobsContext } from '../components/DashboardContext';
+import { QueryClient } from "@tanstack/react-query";
 
-export const loader = async ({request}: any) => {
-    try {
+const allJobQuery = (params: any) => {
+  
+}
+
+export const loader =(queryClient: QueryClient) => async ({request}: any) => {
+  
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
 
-    const { data } = await customFetch.get('/jobs', {
-      params,
-    });
+    // const { data } = await customFetch.get('/jobs', {
+    //   params,
+    // });
 
     return {
-      data,
+      // data,
       searchValues: { ...params },
     };
-  } catch (error: any) {
-    toast.error(error.response.data.msg);
-    return error;
-  }
+ 
+    // toast.error(error.response.data.msg);
+    // return error;
+  
 };
 
 

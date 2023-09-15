@@ -17,29 +17,30 @@ interface User {
   user: UserDetails;
 }
 
-
-export const action = (queryClient: QueryClient) => async ({request}:any) => {
-  const formData = await request.formData();
-  const file = formData.get("avatar");
-  if (file && file.size > 500000) {
-    toast.error("Image size too large")
+export const action =
+  (queryClient: QueryClient) =>
+  async ({ request }: any) => {
+    const formData = await request.formData();
+    const file = formData.get("avatar");
+    if (file && file.size > 500000) {
+      toast.error("Image size too large");
+      return null;
+    }
+    try {
+      await customFetch.patch("/users/update-user", formData);
+      queryClient.invalidateQueries(["user"]);
+      toast.success("Profile updated successfully");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.msg);
+      return null;
+    }
     return null
-  }
-  try {
-    await customFetch.patch("/users/update-user", formData);
-       queryClient.invalidateQueries(["user"]);
-        toast.success("Profile updated successfully");
-  } catch (error: any) {
-        toast.error(error?.response?.data?.msg);
-  }
-  return null;
-}
+  };
 const Profile = () => {
   const user: User = useOutletContext();
   const { name, email, lastName, location } = user.user;
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-
 
   return (
     <Wrapper>
