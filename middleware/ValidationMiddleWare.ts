@@ -25,8 +25,6 @@ const withValidateErrors = (validateValues: any): [ValidationMiddleware, Validat
 
     return [validateValues, validationMiddleware];
 };
-
-
 export const validateJobInput = withValidateErrors(
     [
         body("company").notEmpty().withMessage("company is required"),
@@ -37,7 +35,7 @@ export const validateJobInput = withValidateErrors(
     ]
 )
 export const validateIdParams = withValidateErrors([
-    param("id").custom(async (value,{req}) => {
+    param("id").custom(async (value, { req }) => {
         const isValidId = mongoose.Types.ObjectId.isValid(value);
         if (!isValidId) throw new BadRequestError("Invalid MongoDB id");
         const job = await Job.findById(value);
@@ -47,10 +45,8 @@ export const validateIdParams = withValidateErrors([
         if (!isAdmin && !isOwner) {
             throw new UnauthenticatedError("not authorized to access this route")
         }
-
     })
 ])
-
 export const validateRegisterInput = withValidateErrors([
     body("name").notEmpty().withMessage("name is required"),
     body('email')
@@ -68,7 +64,6 @@ export const validateRegisterInput = withValidateErrors([
     body("location").notEmpty().withMessage("location is required"),
     body("lastName").notEmpty().withMessage("last name is required")
 ])
-
 export const validateLoginInput = withValidateErrors([
     body('email')
         .notEmpty()
@@ -77,7 +72,6 @@ export const validateLoginInput = withValidateErrors([
         .withMessage('invalid email format'),
     body('password').notEmpty().withMessage('password is required'),
 ]);
-
 export const validateUpdateUserInput = withValidateErrors([
     body('name').notEmpty().withMessage('name is required'),
     body('email')
