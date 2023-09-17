@@ -22,7 +22,6 @@ const withValidateErrors = (validateValues: any): [ValidationMiddleware, Validat
         }
         next();
     };
-
     return [validateValues, validationMiddleware];
 };
 export const validateJobInput = withValidateErrors(

@@ -38,11 +38,6 @@ app.use("/api/v1/jobs", authenticateUser, JobRouter)
 app.use("/api/v1/users", authenticateUser,  UserRouter)
 app.use("/api/v1/auth", authRouter)
 app.use(errorHandlerMiddleWare)
-
-
-
-
-
 const port = process.env.PORT || 3000;
 
 (async () => {
