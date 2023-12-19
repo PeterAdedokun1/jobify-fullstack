@@ -1,3 +1,2 @@
-
 # jobify-fullstack
 
