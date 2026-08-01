@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "setup-project": "npm i && cd client npm i",
-    "build": "tsc",
-    "start": "ts-node server.ts",
+    "build": "node init && tsc",
+    "start": "node init && ts-node server.ts",
     "server": "nodemon server",
     "client": "cd  client && npm run dev",
-    "dev": "concurrently --kill-others-on-fail \" npx ts-node-dev --respawn --transpile-only server.ts\" \" npm run client\""
+    "dev": "node init && concurrently --kill-others-on-fail \" npx ts-node-dev --respawn --transpile-only server.ts\" \" npm run client\""
   },
   "keywords": [],
   "author": "",
